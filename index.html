@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Restaurants in Salmiya</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f4f4f4;
+      text-align: center;
+    }
+
+    header {
+      background: #ff4d4d;
+      color: white;
+      padding: 20px;
+    }
+
+    #search {
+      width: 80%;
+      padding: 10px;
+      margin: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .card {
+      background: white;
+      margin: 10px auto;
+      padding: 15px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    button {
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🍽 Best Restaurants in Salmiya</h1>
+    <p>Find the top places to eat near you</p>
+  </header>
+
+  <input type="text" id="search" placeholder="Search restaurants...">
+
+  <div id="restaurant-list"></div>
+
+  <script>
+    const restaurants = [
+      {
+        name: "Burger House",
+        rating: 4.5,
+        location: "Salmiya",
+        map: "https://maps.google.com"
+      },
+      {
+        name: "Pizza Express",
+        rating: 4.2,
+        location: "Salmiya",
+        map: "https://maps.google.com"
+      },
+      {
+        name: "Sushi Go",
+        rating: 4.7,
+        location: "Salmiya",
+        map: "https://maps.google.com"
+      },
+      {
+        name: "Grill Nation",
+        rating: 4.3,
+        location: "Salmiya",
+        map: "https://maps.google.com"
+      }
+    ];
+
+    const container = document.getElementById("restaurant-list");
+
+    function display(data) {
+      container.innerHTML = "";
+
+      data.forEach(r => {
+        container.innerHTML += `
+          <div class="card">
+            <h3>${r.name}</h3>
+            <p>⭐ Rating: ${r.rating}</p>
+            <p>📍 ${r.location}</p>
+            <a href="${r.map}" target="_blank">
+              <button>Open Map</button>
+            </a>
+          </div>
+        `;
+      });
+    }
+
+    display(restaurants);
+
+    document.getElementById("search").addEventListener("input", function(e) {
+      const value = e.target.value.toLowerCase();
+      const filtered = restaurants.filter(r =>
+        r.name.toLowerCase().includes(value)
+      );
+      display(filtered);
+    });
+  </script>
+
+</body>
+</html>
